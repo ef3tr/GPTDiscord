@@ -7,6 +7,22 @@ import traceback
 from pathlib import Path
 from platform import system
 
+from flask import Flask
+from threading import Thread
+
+app = Flask('')
+
+@app.route('/')
+def home():
+    return "Bot aktif ve calisiyor!"
+
+def run():
+    app.run(host='0.0.0.0', port=8080)
+
+def keep_alive():
+    t = Thread(target=run)
+    t.start()
+
 import discord
 import pinecone
 from pycord.multicog import apply_multicog
